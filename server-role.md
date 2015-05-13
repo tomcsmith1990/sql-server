@@ -6,6 +6,8 @@ A server role can be created using: `CREATE SERVER ROLE [role]`.
 
 A login can be added to a server role using `ALTER SERVER ROLE [role] ADD MEMBER [login]`.
 
+There are several built-in server roles. `sysadmin` (commonly referred to as `sa`) has the most permissions.
+
 ## Permissions ##
 
 You can view the server level permissions which a server role has using: `sp_srvrolepermission 'role'`.
