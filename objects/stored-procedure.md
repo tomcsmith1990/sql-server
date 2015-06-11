@@ -49,3 +49,25 @@ WITH ENCRYPTION
 AS
   ...
 ```
+
+## Output Parameters ##
+Output parameters are similar to `out` parameters in C#. A value is set in a stored procedure, and can then be used outside of that procedure.
+
+```
+CREATE PROCEDURE spOutputInt
+  @OutputInt INT {OUTPUT|OUT}
+AS
+  BEGIN
+    SELECT @OutputInt = 1
+  END
+```
+
+To execute a stored procedure with an output parameter (and select it), use:
+
+```
+DECLARE @anOutputParameter INT
+EXECUTE spOutputInt @anOutputParameter OUTPUT
+SELECT @anOutputParameter
+```
+
+If the `OUTPUT` keyword is used when executing, the value returned will be `NULL`.
