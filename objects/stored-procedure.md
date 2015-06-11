@@ -69,6 +69,14 @@ SELECT @anOutputParameter
 
 If the `OUTPUT` keyword is used when executing, the value returned will be `NULL`.
 
+## Return Values ##
+
+A stored procedure returns an integer value, where 0 = success and anything else represents a failure.
+
+The return value can be specified using `RETURN (<return_value>)`.
+
+While this could be used to return integer values, it should really be used for error codes. Output parameters or scalar functions should be used when we want to use the result for non-error handling code.
+
 ## Helpful System Stored Procedures ##
 
 To view information about a stored procedure, including parameter names and types, use `sp_help <procedure_name>`
