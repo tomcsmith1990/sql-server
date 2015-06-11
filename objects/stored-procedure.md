@@ -84,3 +84,13 @@ To view information about a stored procedure, including parameter names and type
 To view the definition of a stored procedure, use `sp_helptext <procedure_name>`
 
 To view the dependencies related to a stored procedure, use `sp_depends <procedure_name>`
+
+## Advantages of Stored Procedures ##
+
+- the execution plan is calculated when the stored procedure is created
+  - this means we don't recalculate it every time we run the query
+  - this also avoids SQL injection, because parameters aren't executed, they're just inserted into the execution plan
+- reduces network traffic by only sending parameters to the server on execution, rather than the large query
+- all the usual benefits of sharing code
+- allows better security
+  - can grant execute permissions for a stored procedure which returns a subset of rows in table, rather than select permissions for the entire table
