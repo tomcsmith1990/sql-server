@@ -2,6 +2,7 @@
 
 A stored procedure is a group of T-SQL statements, which allows the same query to easily be executed again and again.
 
+## Creation ##
 Syntax:
 ```
 CREATE {PROCEDURE|PROC} spMyStoredProcedure
@@ -11,12 +12,14 @@ AS
   END
 ```
 
+## Execution ##
 To execute a stored procedure named `spMyStoredProcedure`, run:
 
 `spMyStoredProcedure` or `EXEC spMyStoredProcedure` or `EXECUTE spMyStoredProcedure`
 
 Naming convention: don't begin a stored procedure name with `sp_`. System stored procedures use this convention, and a future one could have the same name as your procedure.
 
+## Parameters ##
 Stored procedures can also have parameters:
 ```
 CREATE PROCEDURE spMyStoredProcedure
@@ -34,8 +37,10 @@ To execute a stored procedure, run it with comma separated values (parameter nam
 
 `EXEC` and `EXECUTE` can still be used here.
 
+## sp_helptext ##
 To view the text of a stored procedure, use the system stored procedure `sp_helptext`, i.e. `EXECUTE sp_helptext spMyStoredProcedure`.
 
+## Encryption ##
 The text of a stored procedure can be encrypted, using the `WITH ENCRYPTION` option:
 
 ```
