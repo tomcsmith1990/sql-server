@@ -37,9 +37,6 @@ To execute a stored procedure, run it with comma separated values (parameter nam
 
 `EXEC` and `EXECUTE` can still be used here.
 
-## sp_helptext ##
-To view the text of a stored procedure, use the system stored procedure `sp_helptext`, i.e. `EXECUTE sp_helptext spMyStoredProcedure`.
-
 ## Encryption ##
 The text of a stored procedure can be encrypted, using the `WITH ENCRYPTION` option:
 
@@ -71,3 +68,11 @@ SELECT @anOutputParameter
 ```
 
 If the `OUTPUT` keyword is used when executing, the value returned will be `NULL`.
+
+## Helpful System Stored Procedures ##
+
+To view information about a stored procedure, including parameter names and types, use `sp_help <procedure_name>`
+
+To view the definition of a stored procedure, use `sp_helptext <procedure_name>`
+
+To view the dependencies related to a stored procedure, use `sp_depends <procedure_name>`
