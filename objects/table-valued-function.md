@@ -51,3 +51,9 @@ Usage: `SELECT * FROM fnMSTVF()`
 The structure of the table is defined in the function definition.
 
 The function body is enclosed in a `BEGIN...END`.
+
+## Comparison of inline table-valued functions and multi-statement table-valued functions ##
+
+Inline table-valued functions give better performance than multi-statement table-valued functions because SQL Server treats the former similar to views, but treats the latter similar to stored procedures.
+
+An inline table-valued function can be used to update the underlying table using `UPDATE fnInlineTVF() SET ...`. This is not possible with a multi-statement table-valued function.
