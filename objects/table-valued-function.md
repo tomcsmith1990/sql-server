@@ -27,4 +27,27 @@ The structure of the table is determined by the `SELECT` statement in the functi
 
 An inline table-valued function can be used to achieve the functionality of parameterized views.
 
-Unlike a scalar-valued function, the function definition isn't enclosed in a `BEGIN...END`.
+Unlike a scalar-valued function, the function body isn't enclosed in a `BEGIN...END`.
+
+## Multi-statement table-valued function ##
+
+A multi-statement table-valued function also returns a table.
+
+Syntax:
+
+```
+{CREATE|ALTER} FUNCTION fnMSTVF()
+RETURNS @Table TABLE (Id INT, Name NVARCHAR(20))
+AS
+  BEGIN
+    INSERT INTO @Table
+    SELECT Id, Name FROM tblEmployees
+    RETURN
+  END
+```
+
+Usage: `SELECT * FROM fnMSTVF()`
+
+The structure of the table is defined in the function definition.
+
+The function body is enclosed in a `BEGIN...END`.
