@@ -2,6 +2,8 @@
 
 DML (data manipulation language) triggers are fired automatically on DML events (`INSERT|UPDATE|DELETE`).
 
+DML triggers can be created on tables or views.
+
 DML triggers are classified into two types:
 
 - `AFTER` (or `FOR`) triggers, which fire after the DML event
