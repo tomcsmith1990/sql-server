@@ -47,3 +47,60 @@ AS
 ```
 
 An instead of trigger is useful for modifying the data in underlying tables of a view. If a view joins two or more tables, then we can't directly modify data in the view.
+
+Imagine the following scenario:
+
+We have two tables:
+
+```
+CREATE TABLE tblDepartment
+    (
+      DepartmentId INT PRIMARY KEY ,
+      DepartmentName VARCHAR(20)
+    );
+
+CREATE TABLE tblEmployee
+    (
+      Id INT ,
+      Name VARCHAR(20) ,
+      DepartmentId INT
+        FOREIGN KEY REFERENCES dbo.tblDepartment ( DepartmentId )
+    );
+```
+
+We also have a view which joins these two tables:
+
+```
+CREATE VIEW vwEmployeesAndDepartment
+AS
+    SELECT  Id ,
+            Name ,
+            DepartmentName
+    FROM    tblEmployee
+            INNER JOIN tblDepartment ON tblEmployee.DepartmentId = tblDepartment.DepartmentId;
+```
+
+`tblEmployee` has the row `(3, 'SomeEmployee', 2)` and `tblDepartment` has the rows `(1, 'HR'), (2, 'Development')`.
+
+When we run `UPDATE vwEmployeesAndDepartment SET DepartmentName = 'HR' WHERE Id = 3`, SQL Server will actually update the row in `tblDepartment` to be `(2, 'HR')`.
+
+This is clearly wrong. We actually wanted to change the row in `tblEmployee` to be `(3, 'SomeEmployee', 1)`. An instead of trigger can do this for us:
+
+```
+CREATE TRIGGER tr_vwEmployeesAndDepartment_InsteadOfUpdate
+ON vwEmployeesAndDepartment
+INSTEAD OF UPDATE
+AS
+	BEGIN
+		DECLARE @deptName VARCHAR(20);
+		SET @deptName = (SELECT DepartmentName FROM inserted);
+
+		DECLARE @deptId INT;
+		SET @deptId = (SELECT DepartmentId FROM dbo.tblDepartment WHERE DepartmentName = @deptName);
+
+		DECLARE @employeeId INT;
+		SET @employeeId = (SELECT Id FROM inserted);
+
+		UPDATE dbo.tblEmployee SET DepartmentId = @deptId WHERE Id = @employeeId;
+	END
+```
