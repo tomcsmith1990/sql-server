@@ -10,6 +10,8 @@ FROM    <table_name>
 WHERE   <condition>
 ```
 
+The `WHERE` clause is optional, and will filter the results by row. Omitting the `WHERE` clause will return a value for each row.
+
 For example, to select the names of customers living in Cambridge from a table of addresses:
 
 ```
