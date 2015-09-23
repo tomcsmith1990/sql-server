@@ -19,3 +19,12 @@ SELECT  [name]
 FROM    [tblCustomers]
 WHERE   [city] = 'Cambridge'
 ```
+
+To select all of the columns from a table a `*` may be used in place of `<column_list>`:
+
+```
+SELECT  *
+FROM    [tblCustomers]
+```
+
+However, this offers worse performance.
