@@ -28,3 +28,11 @@ FROM    [tblCustomers]
 ```
 
 However, this offers worse performance.
+
+## Limiting the number of results using `TOP` ##
+
+The `TOP` modifier can be used to limit the number of results returned.
+
+`SELECT TOP N <column_list> FROM <table_name>` will only return the top `N` (or fewer) matching rows.
+
+`SELECT TOP X PERCENT <column_list> FROM <table_name>` will only return the top `X` percent of matching rows (or fewer).
