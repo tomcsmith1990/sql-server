@@ -36,3 +36,9 @@ The `TOP` modifier can be used to limit the number of results returned.
 `SELECT TOP N <column_list> FROM <table_name>` will only return the top `N` (or fewer) matching rows.
 
 `SELECT TOP X PERCENT <column_list> FROM <table_name>` will only return the top `X` percent of matching rows (or fewer).
+
+## Removing duplicate rows using `DISTINCT` ##
+
+The `DISTINCT` keyword can be used to only remove duplicate values from the results.
+
+`SELECT DISTINCT <column_list> FROM <table_name>` will only return unique results. If two rows have the same values for each column specified in `<column_list>`, the result will only be returned once.
