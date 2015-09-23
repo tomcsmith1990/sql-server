@@ -31,7 +31,7 @@ However, this offers worse performance.
 
 ## Limiting the number of results using `TOP` ##
 
-The `TOP` modifier can be used to limit the number of results returned.
+The `TOP` keyword can be used to limit the number of results.
 
 `SELECT TOP N <column_list> FROM <table_name>` will only return the top `N` (or fewer) matching rows.
 
